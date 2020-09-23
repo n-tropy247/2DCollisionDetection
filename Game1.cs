@@ -25,7 +25,7 @@ namespace CollisionTesting
         private float speed4Y = 115;
         private readonly List<CollisionCell> _cells = new List<CollisionCell>();
         private Texture2D _pixel;
-        SpriteBatch _spriteBatch;
+        private SpriteBatch _spriteBatch;
 
         public Game1()
         {
@@ -289,11 +289,9 @@ namespace CollisionTesting
                     c.DrawColor = cellColorCollide;
                     for (var i = 0; i < c.Items.Count - 1; i++)
                     {
-                        if (c.Items[i].Bounds.Intersects(c.Items[i + 1].Bounds))
-                        {
-                            c.Items[i].DrawColor = boxColorCollide;
-                            c.Items[i + 1].DrawColor = boxColorCollide;
-                        }
+                        if (!c.Items[i].Bounds.Intersects(c.Items[i + 1].Bounds)) continue;
+                        c.Items[i].DrawColor = boxColorCollide;
+                        c.Items[i + 1].DrawColor = boxColorCollide;
                     }
                 }
                 else
